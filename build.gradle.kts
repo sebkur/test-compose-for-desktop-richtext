@@ -64,17 +64,27 @@ compose.desktop {
     application {
         mainClass = "de.mobanisto.test.MainKt"
         nativeDistributions {
-            targetFormats(TargetFormat.Deb)
+            targetFormats(TargetFormat.Deb, TargetFormat.Msi)
             packageName = "Test"
             description = "Test project"
             vendor = "Mobanisto"
             copyright = "2022 Mobanisto"
             licenseFile.set(project.file("LICENSE.txt"))
+            // The files contained in this directory will be available after installing using
+            // the native installation package.
+            // On Linux, they will be located at /opt/test-project/lib/app/resources
+            // On Windows, they will be located at C:\Program Files\Test\app\resources
+            appResourcesRootDir.set(project.layout.projectDirectory.dir("src/appdata"))
             linux {
                 packageName = "test-project"
-                debPackageVersion = "$versionCode"
+                iconFile.set(project.file("src/main/resources/logo.png"))
+                debPackageVersion = versionCode
                 appCategory = "comm"
                 menuGroup = "Network;Chat;InstantMessaging;"
+            }
+            windows {
+                iconFile.set(project.file("src/main/resources/logo.ico"))
+                upgradeUuid = "FD4C39EF-F3A3-4E72-8D4F-41AC5CF6E1AA"
             }
         }
     }
