@@ -40,7 +40,7 @@ allprojects {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.materialIconsExtended)
-    implementation("com.halilibo.compose-richtext:richtext-commonmark:0.16.0")
+    implementation("com.halilibo.compose-richtext:richtext-commonmark:0.17.0")
 }
 
 tasks.withType<KotlinCompile> {
