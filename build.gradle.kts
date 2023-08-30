@@ -43,10 +43,6 @@ dependencies {
     implementation("com.halilibo.compose-richtext:richtext-commonmark:0.17.0")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
-
 tasks.register<proguard.gradle.ProGuardTask>("minify") {
     val packageUberJarForCurrentOS by tasks.getting
     dependsOn(packageUberJarForCurrentOS)
